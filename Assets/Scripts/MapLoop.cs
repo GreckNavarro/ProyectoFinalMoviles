@@ -4,17 +4,68 @@ using UnityEngine;
 
 public class MapLoop : MonoBehaviour
 {
-    private GameObject[,] Map;
-    private GameObject mapToInstance;
+    private Vector3 pos = Vector3.zero;
+    [SerializeField] private GameObject prefObject;
+    private List<Transform> tiles = new List<Transform>();
+    [SerializeField] float spacing = 10.0f;
+    int[,] map = new int[3, 3]
+    {
+        { 1, 1, 1 },
+        { 1, 1, 1 },
+        { 1, 1, 1 }
+    };
+    Transform player;
+    Vector3 terrainPos = Vector3.zero;
+    Vector3 playerPos = Vector3.zero;
+    Vector3 initialDiff = Vector3.zero;
+
     // Start is called before the first frame update
     void Start()
     {
-        Map = new GameObject[3,3];
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        GenerateInitialMap();
+        initialDiff = player.position - transform.position;
+        initialDiff.y = 0;
+
+        initialDiff.x = Mathf.Floor(initialDiff.x);
+        initialDiff.z = Mathf.Floor(initialDiff.z);
+
+        playerPos.x = Mathf.Floor(player.position.x);
+        playerPos.z = Mathf.Floor(player.position.z);
+        playerPos.y = 0;
+
+        terrainPos = playerPos - initialDiff;
+        transform.position = terrainPos;
+    }
+
+    private void GenerateInitialMap()
+    {
+        for (int z = 0; z < map.GetLength(0); z++)
+        {
+            for (int x = 0; x < map.GetLength(1); x++)
+            {
+                pos.z = z * spacing;
+                pos.x = x * spacing;
+                GameObject tile = Instantiate(prefObject, pos, Quaternion.identity, transform);
+
+                tiles.Add(tile.transform);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateMap();
+    }
+
+    private void UpdateMap()
+    {
+        playerPos.x = Mathf.Floor(player.position.x);
+        playerPos.z = Mathf.Floor(player.position.z);
+        playerPos.y = 0;
+
+        terrainPos = playerPos - initialDiff;
+        transform.position = terrainPos;
     }
 }
