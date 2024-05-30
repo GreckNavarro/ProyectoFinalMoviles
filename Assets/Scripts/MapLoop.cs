@@ -6,7 +6,6 @@ public class MapLoop : MonoBehaviour
 {
     private Vector3 pos = Vector3.zero;
     [SerializeField] private GameObject prefObject;
-    private List<Transform> tiles = new List<Transform>();
     [SerializeField] float spacing = 10.0f;
     int[,] map = new int[3, 3]
     {
@@ -20,7 +19,7 @@ public class MapLoop : MonoBehaviour
     Vector3 initialDiff = Vector3.zero;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         GenerateInitialMap();
@@ -46,9 +45,7 @@ public class MapLoop : MonoBehaviour
             {
                 pos.z = z * spacing;
                 pos.x = x * spacing;
-                GameObject tile = Instantiate(prefObject, pos, Quaternion.identity, transform);
-
-                tiles.Add(tile.transform);
+                Instantiate(prefObject, pos, Quaternion.identity, transform);
             }
         }
     }
