@@ -6,10 +6,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class AutoShoot : MonoBehaviour
 {
-    public GameObject projectilePrefab;  // Prefab del proyectil
-    public float shootInterval = 1f;     // Intervalo entre disparos en segundos
-    public Transform shootPoint;         // Punto desde donde se dispara
-    public float detectionRadius = 10f;  // Radio de detección de enemigos
+    public GameObject projectilePrefab; 
+    public float shootInterval = 0.5f;    
+    public Transform shootPoint;       
+    public float detectionRadius = 10f; 
 
     private float timeSinceLastShot;
     private List<GameObject> nearbyEnemies = new List<GameObject>();
@@ -30,7 +30,7 @@ public class AutoShoot : MonoBehaviour
         if (timeSinceLastShot >= shootInterval)
         {
             GameObject nearestEnemy = FindNearestEnemy();
-            if (nearestEnemy != null)
+            if (nearestEnemy != null && nearestEnemy.activeSelf == true)
             {
                 RotateTowards(nearestEnemy.transform);
                 Shoot(nearestEnemy.transform);

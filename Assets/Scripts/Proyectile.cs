@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 10f; 
-    public float lifetime = 5f; 
+    [SerializeField] float speed = 10f;
+    [SerializeField] float lifetime = 5f;
+    [SerializeField] int damage;
     private Transform target;    
 
     void Start()
@@ -30,19 +31,11 @@ public class Projectile : MonoBehaviour
     {
         this.target = target;
     }
-
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Enemy"))
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Me voy a destruir");
+            other.GetComponent<EnemyMovement>().TakeDamage?.Invoke(damage);
             Destroy(gameObject);
             
         }
