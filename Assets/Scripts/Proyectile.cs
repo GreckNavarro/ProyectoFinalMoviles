@@ -31,11 +31,20 @@ public class Projectile : MonoBehaviour
         this.target = target;
     }
 
-    void OnCollisionEnter(Collision collision)
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Enemy"))
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if(other.gameObject.tag == "Enemy")
         {
+            Debug.Log("Me voy a destruir");
             Destroy(gameObject);
+            
         }
     }
 }
