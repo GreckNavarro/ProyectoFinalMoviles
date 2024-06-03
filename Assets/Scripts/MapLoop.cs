@@ -21,7 +21,7 @@ public class MapLoop : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("BodyPlayer").transform;
         GenerateInitialMap();
         initialDiff = player.position - transform.position;
         initialDiff.y = 0;

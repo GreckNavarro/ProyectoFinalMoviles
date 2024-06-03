@@ -8,17 +8,18 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float speed;
     private void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("BodyPlayer").transform;
     }
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
     }
     private void OnTriggerEnter(Collider other)
     {
-        //if(other.gameObject.tag == "Player")
-        //{
-        //    Destroy(this.gameObject);
-        //}
+        if(other.gameObject.tag == "BodyPlayer")
+        {
+           Destroy(this.gameObject);
+        }
     }
 }

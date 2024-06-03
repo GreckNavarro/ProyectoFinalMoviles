@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
+    [SerializeField]  float speed;
+    [SerializeField] Animator animator;
 
     Rigidbody rb;
     public Joystick joystick;
@@ -19,7 +20,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement = new Vector3(joystick.Horizontal, rb.velocity.y, joystick.Vertical);
-        rb.velocity = movement * speed;
+        if(joystick.Horizontal != 0 || joystick.Vertical != 0)
+        {
+            animator.SetBool("Moving", true);
+            movement = new Vector3(joystick.Horizontal, rb.velocity.y, joystick.Vertical);
+            rb.velocity = movement * speed;
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+            animator.SetBool("Moving", false);
+        }
     }
 }

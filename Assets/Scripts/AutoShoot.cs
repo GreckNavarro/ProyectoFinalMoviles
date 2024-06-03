@@ -41,9 +41,7 @@ public class AutoShoot : MonoBehaviour
 
     private void RotateTowards(Transform target)
     {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+        transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
     }
 
     GameObject FindNearestEnemy()
