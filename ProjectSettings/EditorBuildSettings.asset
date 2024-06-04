@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ScreenTouch.unity
     guid: 49e79a42d884408469df92c159948f65
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/SceneGame.unity
+    guid: 04b4533f825683f46a5b94b907dca411
   m_configObjects: {}

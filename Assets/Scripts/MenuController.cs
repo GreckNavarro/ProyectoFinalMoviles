@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class MenuController : MonoBehaviour
     {
         OnLeave.Raise();
     }
+    public void Play()
+    {
+        SceneManager.LoadScene("SceneGame");
+    }
+
     public void OnLeaveAction()
     {
         Debug.Log("Sali");
