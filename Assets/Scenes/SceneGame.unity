@@ -685,7 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 7778659910473302298, guid: da9cc001188ae984c924bb6c5ac63f38, type: 3}
-  shootInterval: 1
+  shootInterval: 0.5
   shootPoint: {fileID: 339847151}
   detectionRadius: 10
   shooting: 0
