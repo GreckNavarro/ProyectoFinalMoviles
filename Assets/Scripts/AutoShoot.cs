@@ -12,7 +12,10 @@ public class AutoShoot : MonoBehaviour
     public float detectionRadius = 10f; 
 
     private float timeSinceLastShot;
+    [SerializeField] private bool shooting;
     private List<GameObject> nearbyEnemies = new List<GameObject>();
+
+    public bool Shooting { get { return shooting; } }
 
     void Start()
     {
@@ -21,6 +24,7 @@ public class AutoShoot : MonoBehaviour
         SphereCollider collider = gameObject.AddComponent<SphereCollider>();
         collider.isTrigger = true;
         collider.radius = detectionRadius;
+        shooting = false;
     }
 
     void Update()
@@ -32,8 +36,13 @@ public class AutoShoot : MonoBehaviour
             GameObject nearestEnemy = FindNearestEnemy();
             if (nearestEnemy != null && nearestEnemy.activeSelf == true)
             {
+ 
                 RotateTowards(nearestEnemy.transform);
                 Shoot(nearestEnemy.transform);
+            }
+            else
+            {
+                shooting = false;
             }
             timeSinceLastShot = 0f;
         }
@@ -57,6 +66,7 @@ public class AutoShoot : MonoBehaviour
                 float distance = Vector3.Distance(enemy.transform.position, position);
                 if (distance < shortestDistance)
                 {
+                    shooting = true;
                     shortestDistance = distance;
                     nearestEnemy = enemy;
                 }

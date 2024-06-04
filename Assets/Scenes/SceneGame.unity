@@ -688,6 +688,7 @@ MonoBehaviour:
   shootInterval: 1
   shootPoint: {fileID: 339847151}
   detectionRadius: 10
+  shooting: 0
 --- !u!1 &1012258686
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +789,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  speedRotation: 10
   animator: {fileID: 919132149282152765}
+  Player: {fileID: 903056485}
+  shooter: {fileID: 903056487}
   joystick: {fileID: 521700540}
 --- !u!4 &1767381920
 Transform:
@@ -866,7 +870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1953526435
 MonoBehaviour:
   m_ObjectHideFlags: 0
