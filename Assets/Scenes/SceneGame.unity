@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -765,6 +765,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1767381920}
+  - component: {fileID: 1767381922}
   - component: {fileID: 1767381919}
   - component: {fileID: 1767381921}
   m_Layer: 0
@@ -833,6 +834,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1767381922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767381918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8fe343a404a81a41bb3601ded15d421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nivel: 0
+  currentExp: 0
+  maxExp: 15
 --- !u!1 &1953526434
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,7 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba6e0a288be6f84ba2d22ff472f9962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolingStatic: {fileID: 0}
+  poolingStatic: {fileID: 1953526435}
   horda: 6
   player: {fileID: 919132149282152764}
   radioNoSpawn: 15

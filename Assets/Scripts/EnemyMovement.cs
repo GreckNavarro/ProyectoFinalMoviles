@@ -61,7 +61,10 @@ public class EnemyMovement : MonoBehaviour
     private void DesactiveObject()
     {
         pooling.SetObject(this.gameObject);
-        Instantiate(typeEnemy.PrefabGem, transform.position, Quaternion.identity);
+        GameObject gems = Instantiate(typeEnemy.PrefabGem, transform.position, Quaternion.identity);
+        gems.AddComponent<GemsController>();
+        BoxCollider collidergems =gems.AddComponent<BoxCollider>();
+        collidergems.isTrigger = true;
         gameObject.SetActive(false);
     }
 }
