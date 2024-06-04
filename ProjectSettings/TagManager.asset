@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - BodyPlayer
+  - Gems
   layers:
   - Default
   - TransparentFX

@@ -60,6 +60,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void DesactiveObject()
     {
+        AutoShoot.QuitarZombie(this.gameObject);
         pooling.SetObject(this.gameObject);
         GameObject gems = Instantiate(typeEnemy.PrefabGem, transform.position, Quaternion.identity);
         gems.AddComponent<GemsController>();

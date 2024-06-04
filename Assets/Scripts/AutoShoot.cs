@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 public class AutoShoot : MonoBehaviour
 {
     public GameObject projectilePrefab; 
-    public float shootInterval = 0.5f;    
+    public float shootInterval = 1.0f;    
     public Transform shootPoint;       
     public float detectionRadius = 10f; 
 
@@ -15,7 +16,21 @@ public class AutoShoot : MonoBehaviour
     [SerializeField] private bool shooting;
     private List<GameObject> nearbyEnemies = new List<GameObject>();
 
+    public static Action<GameObject> QuitarZombie;
+
     public bool Shooting { get { return shooting; } }
+
+    private void OnEnable()
+    {
+        QuitarZombie += RemoveZombie;
+        SystemExp.newLvl += IncrementPower;
+
+    }
+    private void OnDisable()
+    {
+        QuitarZombie -= RemoveZombie;
+        SystemExp.newLvl -= IncrementPower;
+    }
 
     void Start()
     {
@@ -48,6 +63,13 @@ public class AutoShoot : MonoBehaviour
         }
     }
 
+    private void IncrementPower()
+    {
+        if(shootInterval > 0.2f)
+        {
+            shootInterval -= 0.2f;
+        }
+    }
     private void RotateTowards(Transform target)
     {
         transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
@@ -78,6 +100,7 @@ public class AutoShoot : MonoBehaviour
 
     void Shoot(Transform target)
     {
+        Debug.Log("Disparo");
         GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
         Projectile projectileScript = projectile.GetComponent<Projectile>();
         if (projectileScript != null)
@@ -100,5 +123,10 @@ public class AutoShoot : MonoBehaviour
         {
             nearbyEnemies.Remove(other.gameObject);
         }
+    }
+    void RemoveZombie(GameObject Zombie)
+    {
+        Debug.Log("Quitando");
+        nearbyEnemies.Remove(Zombie);
     }
 }

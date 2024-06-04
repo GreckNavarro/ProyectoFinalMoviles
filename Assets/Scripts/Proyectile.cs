@@ -5,9 +5,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
-    [SerializeField] float lifetime = 5f;
+    [SerializeField] float lifetime = 1f;
     [SerializeField] int damage;
-    private Transform target;    
+    [SerializeField] private Transform target;    
 
     void Start()
     {
@@ -16,13 +16,14 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        if (target != null)
+        if (target != null || target.gameObject.activeSelf == true)
         {
             Vector3 direction = (target.position - transform.position).normalized;
             transform.Translate(direction * speed * Time.deltaTime, Space.World);
         }
-        else
+        if(target.gameObject.activeSelf == false)
         {
+        
             Destroy(gameObject);
         }
     }
@@ -39,5 +40,6 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
             
         }
+  
     }
 }

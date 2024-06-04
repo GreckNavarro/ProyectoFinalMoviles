@@ -9,6 +9,7 @@ public class SystemExp : MonoBehaviour
     public int currentExp;
     public int maxExp;
     public static Action<int> levelUp;
+    public static Action newLvl;
     public void OnEnable()
     {
         levelUp += QuantityExp;
@@ -27,6 +28,7 @@ public class SystemExp : MonoBehaviour
         if (currentExp >= maxExp)
         {
             nivel++;
+            newLvl?.Invoke();
             maxExp = Mathf.RoundToInt(maxExp * 3.5f);
         }
     }
